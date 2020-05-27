@@ -17,7 +17,7 @@ namespace Poker.Service
             this.Balance = initialBalance;
             this.NotFolded = true;
             BestHand = new BestHand();
-            HandAndBoard = new HandAndBoard();
+            HandAndBoard = new List<Card>();
         }
 
         public string Name { get; private set; }
@@ -26,7 +26,7 @@ namespace Poker.Service
         public uint CurrentBid { get; set; }
         public bool NotFolded { get; set; }
         public BestHand BestHand { get; set; }
-        public HandAndBoard HandAndBoard { get; set; }
+        public List<Card> HandAndBoard { get; set; }
 
         public void AddCards(params Card[] cards)
         {
@@ -35,21 +35,34 @@ namespace Poker.Service
                 Hand.Add(c);
             }
         }
+        public virtual void DoAction()
+        {
 
+        }
         public void Call()
         {
             Balance -= BetController.GetHighestBet() - CurrentBid;
             CurrentBid = BetController.GetHighestBet();
+            Console.WriteLine($"{Name} called");
         }
         public void Raise(uint raiseValue)
         {
             Balance -= BetController.GetHighestBet() + raiseValue - CurrentBid;
             CurrentBid = BetController.GetHighestBet() + raiseValue;
+            Console.WriteLine($"{Name} raised {raiseValue}");
         }
         public void Fold()
         {
-            CurrentBid = 0;
             NotFolded = false;
+        }
+        public void ResetPlayer()
+        {
+            this.Hand = new List<Card>();
+            this.HandAndBoard = new List<Card>();
+            this.CurrentBid = 0;
+            this.NotFolded = true;
+            this.BestHand.BestCards = new List<Card>();
+            this.BestHand.Value = 0;
         }
 
         public override string ToString()

@@ -48,7 +48,7 @@
     <Compile Include="Engine.cs" />
     <Compile Include="Service\Cards\BestHand.cs" />
     <Compile Include="Service\Cards\BoardController.cs" />
-    <Compile Include="Service\Cards\HandAndBoard.cs" />
+    <Compile Include="Service\GameController.cs" />
     <Compile Include="Service\Players\AI.cs" />
     <Compile Include="Service\Cards\Card.cs" />
     <Compile Include="Program.cs" />

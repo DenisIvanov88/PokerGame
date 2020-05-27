@@ -16,9 +16,12 @@ namespace Poker.View
             Console.Write("Balance: ");
             uint balance = uint.Parse(Console.ReadLine());
 
-            PlayerController.InitializeMainPlayer(name, balance);
-
-            PrintGameView.PrintGame();
+            PlayerController.InitializeAllPlayers(name, balance);
+        }
+        public static void ShowWinner(Player player)
+        {
+            Console.WriteLine($"Winner is: {player.Name}!");
+            CardView.PrintCards(player.BestHand.BestCards.ToArray(), player.Name);
         }
     }
 }

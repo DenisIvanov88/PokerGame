@@ -19,7 +19,7 @@ namespace Poker.View
             PrintCards(CardController.GetPlayerHand(), "Hand");
         }
 
-        private static void PrintCards(Card[] cards, string sender)
+        public static void PrintCards(Card[] cards, string sender)
         {
             StringBuilder sb = new StringBuilder(new string(' ', sender.Length + 2));
 

@@ -9,6 +9,9 @@ namespace Poker.Data
 {
     public static class PlayerData
     {
+        public static AI Player1;
+        public static AI Player2;
         public static User User;
+        public static AI Player3;
     }
 }

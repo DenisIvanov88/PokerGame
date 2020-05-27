@@ -24,7 +24,7 @@ namespace PokerTests
         public void ChecksForFlush()
         {
             User player = new User("Gosho", 1000);
-            player.HandAndBoard.Cards = flushCards.ToList();
+            player.HandAndBoard = flushCards.ToList();
             BestHand.SetBestCards(player);
 
             Assert.AreEqual(6, player.BestHand.Value);
@@ -33,7 +33,7 @@ namespace PokerTests
         public void ChecksForStraight()
         {
             User player = new User("Gosho", 1000);
-            player.HandAndBoard.Cards = straightCards.ToList();
+            player.HandAndBoard = straightCards.ToList();
             BestHand.SetBestCards(player);
 
             Assert.AreEqual(5, player.BestHand.Value);
@@ -42,7 +42,7 @@ namespace PokerTests
         public void CheckForStraightFlushNoDuplicates()
         {
             User player = new User("Gosho", 1000);
-            player.HandAndBoard.Cards = straightFlushCardsNoDupl.ToList();
+            player.HandAndBoard = straightFlushCardsNoDupl.ToList();
             BestHand.SetBestCards(player);
 
             Assert.AreEqual(9, player.BestHand.Value);
@@ -51,7 +51,7 @@ namespace PokerTests
         public void CheckForStraightFlushWithDuplicates()
         {
             User player = new User("Gosho", 1000);
-            player.HandAndBoard.Cards = straightFlushCardsWithDupl.ToList();
+            player.HandAndBoard = straightFlushCardsWithDupl.ToList();
             BestHand.SetBestCards(player);
 
             Assert.AreEqual(9, player.BestHand.Value);
@@ -60,7 +60,7 @@ namespace PokerTests
         public void CheckForPair()
         {
             User player = new User("Gosho", 1000);
-            player.HandAndBoard.Cards = pairCards.ToList();
+            player.HandAndBoard = pairCards.ToList();
             BestHand.SetBestCards(player);
 
             Assert.AreEqual(2, player.BestHand.Value);
@@ -69,7 +69,7 @@ namespace PokerTests
         public void CheckForTwoPair()
         {
             User player = new User("Gosho", 1000);
-            player.HandAndBoard.Cards = twoPairCards.ToList();
+            player.HandAndBoard = twoPairCards.ToList();
             BestHand.SetBestCards(player);
 
             Assert.AreEqual(3, player.BestHand.Value);
@@ -78,7 +78,7 @@ namespace PokerTests
         public void CheckForSet()
         {
             User player = new User("Gosho", 1000);
-            player.HandAndBoard.Cards = setCards.ToList();
+            player.HandAndBoard = setCards.ToList();
             BestHand.SetBestCards(player);
 
             Assert.AreEqual(4, player.BestHand.Value);
@@ -87,7 +87,7 @@ namespace PokerTests
         public void CheckForFullHouse()
         {
             User player = new User("Gosho", 1000);
-            player.HandAndBoard.Cards = fullHouseCards.ToList();
+            player.HandAndBoard = fullHouseCards.ToList();
             BestHand.SetBestCards(player);
 
             Assert.AreEqual(7, player.BestHand.Value);
@@ -96,7 +96,7 @@ namespace PokerTests
         public void CheckForQuad()
         {
             User player = new User("Gosho", 1000);
-            player.HandAndBoard.Cards = quadCards.ToList();
+            player.HandAndBoard = quadCards.ToList();
             BestHand.SetBestCards(player);
 
             Assert.AreEqual(8, player.BestHand.Value);

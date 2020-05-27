@@ -11,9 +11,9 @@ namespace Poker.View
 {
     public static class CommandView
     {
-        public static void AskUser()
+        public static string[] AskUser()
         {
-            if (BetController.UserCanCall())
+            if (BetController.GetHighestBet() > PlayerData.User.CurrentBid)
             {
                 Console.Write("Call/Raise/Fold? ");
             }
@@ -23,14 +23,7 @@ namespace Poker.View
             }
 
             string[] command = Console.ReadLine().Trim().Split(' ').Where(x => x != "").Select(x => x.ToLower()).ToArray();
-            if (command.Length > 1)
-            {
-                PlayerData.User.DoAction(command[0], uint.Parse(command[1]));
-            }
-            else
-            {
-                PlayerData.User.DoAction(command[0], 0);
-            }
+            return command;
         }
     }
 }

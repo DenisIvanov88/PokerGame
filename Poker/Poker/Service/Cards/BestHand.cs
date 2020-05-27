@@ -20,7 +20,7 @@ namespace Poker.Service.Cards
             }
             if (player.BestHand.Value == 0)
             {
-                List<Card> orderedCards = player.HandAndBoard.Cards.OrderByDescending(x => x.Number).ToList();
+                List<Card> orderedCards = player.HandAndBoard.OrderByDescending(x => x.Number).ToList();
                 List<Card> sameNumberedCards = orderedCards.Where(x => orderedCards.Count(y => y.Number == x.Number) > 1).ToList();
                 int sameCardsCount = sameNumberedCards.Count;
 
@@ -84,7 +84,7 @@ namespace Poker.Service.Cards
         }
         private static void CheckForFlush(Player player)
         {
-            Card[] orderedCards = player.HandAndBoard.Cards.OrderByDescending(x => x.Number).ToArray();
+            Card[] orderedCards = player.HandAndBoard.OrderByDescending(x => x.Number).ToArray();
             char mostCommonSuit = orderedCards.Select(x => x.Suit).OrderByDescending(x => orderedCards.Count(card => card.Suit == x)).First();
             List<Card> flushCards = orderedCards.Where(x => x.Suit == mostCommonSuit).ToList();
 
@@ -92,10 +92,10 @@ namespace Poker.Service.Cards
             {
                 player.BestHand.Value = 6;
 
-                var tmpCards = player.HandAndBoard.Cards;
-                player.HandAndBoard.Cards = flushCards;
+                var tmpCards = player.HandAndBoard;
+                player.HandAndBoard = flushCards;
                 CheckForStraight(player);
-                player.HandAndBoard.Cards = tmpCards;
+                player.HandAndBoard = tmpCards;
 
                 if (player.BestHand.Value == 5)
                 {
@@ -109,7 +109,7 @@ namespace Poker.Service.Cards
         }
         private static void CheckForStraight(Player player)
         {
-            Card[] orderedCards = player.HandAndBoard.Cards.OrderByDescending(x => x.Number).ToArray();
+            Card[] orderedCards = player.HandAndBoard.OrderByDescending(x => x.Number).ToArray();
             List<Card> straightCards = new List<Card>();
             int sequenceCount = 1;
 

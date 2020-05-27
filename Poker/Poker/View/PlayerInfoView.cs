@@ -9,7 +9,7 @@ namespace Poker.View
 {
     public static class PlayerInfoView
     {
-        public static void PrintAllNamesAndBets()
+        public static void PrintAllNamesAndBalances()
         {
             string[] allNames = PlayerController.GetAllNames();
             string[] allBalances = PlayerController.GetAllBalances().Select(x => x.ToString()).ToArray();

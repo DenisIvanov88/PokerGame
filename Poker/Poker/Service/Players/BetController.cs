@@ -9,14 +9,18 @@ namespace Poker.Service.Players
 {
     public static class BetController
     {
-        public static bool UserCanCall()
+        public static bool PlayerCanCall(Player player)
         {
-            return GetHighestBet() > PlayerData.User.CurrentBid;
+            return GetHighestBet() > player.CurrentBid;
         }
 
         public static uint GetHighestBet()
         {
             return PlayerController.GetAllBets().Max();
+        }
+        public static uint GetSumOfBets()
+        {
+            return PlayerController.GetAllBets().Aggregate((x, y) => x + y);
         }
     }
 }

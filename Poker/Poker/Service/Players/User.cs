@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Poker.Service.Players;
+using Poker.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,15 +14,22 @@ namespace Poker.Service
         {
         }
 
-        public void DoAction(string command, uint value)
+        public override void DoAction()
         {
-            switch (command)
+            string[] command = CommandView.AskUser().ToArray();
+            switch (command[0])
             {
-                case "call": this.Call(); break;
-                case "raise": this.Raise(value); break;
-                case "fold": this.Fold(); break;
-                case "end":
-                case "stop": Engine.Playing = false; break;
+                case "raise": base.Raise(uint.Parse(command[1])); break;
+                case "call":
+                    if (BetController.PlayerCanCall(this))
+                    {
+                        base.Call();
+                    }
+                    break;
+                case "fold": base.Fold(); break;
+                case "stop":
+                case "end": Engine.Playing = false; break;
+                default: Console.WriteLine($"{Name} passed"); break;
             }
         }
     }

@@ -9,16 +9,17 @@ namespace Poker.Service
 {
     public static class PlayerController
     {
-        public static void InitializeMainPlayer(string name, uint balance)
+        public static void InitializeAllPlayers(string name, uint balance)
         {
+            PlayerData.Player1 = new AI("AI1", balance);
+            PlayerData.Player2 = new AI("AI2", balance);
             PlayerData.User = new User(name, balance);
-            
-            PlayerData.User.AddCards(CardController.DrawRandomCard(), CardController.DrawRandomCard());
+            PlayerData.Player3 = new AI("AI3", balance);
         }
 
         public static Player[] GetAllPlayers()
         {
-            return new Player[] { PlayerData.User };
+            return new Player[] { PlayerData.Player1, PlayerData.Player2, PlayerData.User, PlayerData.Player3 };
         }
         public static string[] GetAllNames()
         {

@@ -1,5 +1,6 @@
 ﻿using Poker.Data;
 using Poker.Service.Cards;
+using Poker.Service.Players;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,12 +15,12 @@ namespace Poker.View
         {
             Console.Clear();
 
-            PlayerInfoView.PrintAllNamesAndBets();
-            BoardController.DrawCards();
+            PlayerInfoView.PrintAllNamesAndBalances();
             CardView.PrintBoard();
             CardView.PrintHand();
             Console.WriteLine(PlayerData.User.ToString());
-            CommandView.AskUser();
+            Console.WriteLine($"Current pool: {BetController.GetSumOfBets()}");
+            Console.WriteLine("Message log:");
         }
     }
 }
