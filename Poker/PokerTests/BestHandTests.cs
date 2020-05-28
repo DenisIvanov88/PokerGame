@@ -13,6 +13,7 @@ namespace PokerTests
     {
         private static Card[] flushCards = { new Card(3, 'H'), new Card(4, 'H'), new Card(3, 'S'), new Card(4, 'D'), new Card(9, 'H'), new Card(6, 'H'), new Card(12, 'H') };
         private static Card[] straightCards = { new Card(3, 'H'), new Card(4, 'H'), new Card(5, 'S'), new Card(10, 'D'), new Card(6, 'C'), new Card(6, 'H'), new Card(7, 'D') };
+        private static Card[] aceLowStraightCards = { new Card(3, 'H'), new Card(4, 'H'), new Card(5, 'S'), new Card(14, 'D'), new Card(2, 'C'), new Card(9, 'H'), new Card(12, 'D') };
         private static Card[] straightFlushCardsNoDupl = { new Card(3, 'H'), new Card(4, 'H'), new Card(5, 'H'), new Card(10, 'S'), new Card(9, 'S'), new Card(6, 'H'), new Card(7, 'H') };
         private static Card[] straightFlushCardsWithDupl = { new Card(3, 'H'), new Card(4, 'H'), new Card(5, 'H'), new Card(6, 'S'), new Card(7, 'S'), new Card(6, 'H'), new Card(7, 'H') };
         private static Card[] pairCards = { new Card(3, 'H'), new Card(3, 'S'), new Card(5, 'H'), new Card(10, 'S'), new Card(11, 'S'), new Card(9, 'S'), new Card(7, 'D') };
@@ -37,6 +38,16 @@ namespace PokerTests
             BestHand.SetBestCards(player);
 
             Assert.AreEqual(5, player.BestHand.Value);
+        }
+        [Test]
+        public void ChecksForStraightWithAceLow()
+        {
+            User player = new User("Gosho", 1000);
+            player.HandAndBoard = aceLowStraightCards.ToList();
+            BestHand.SetBestCards(player);
+
+            Assert.AreEqual(5, player.BestHand.Value);
+            Assert.AreEqual(14, player.BestHand.BestCards.Last().Number);
         }
         [Test]
         public void CheckForStraightFlushNoDuplicates()

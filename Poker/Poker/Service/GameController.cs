@@ -66,14 +66,21 @@ namespace Poker.Service
         }
         private static void PlayersDoActionUntillAllBetsAreEqual(List<Player> players)
         {
-            bool allBetsAreNotEqual = true;
+            AllPlayersDoAction(players);
 
+            bool allBetsAreNotEqual = true;
+            int currPlayer = 0;
             while (allBetsAreNotEqual)
             {
-                AllPlayersDoAction(players);
-                if (PlayerController.GetAllBets().All(x => x == PlayerController.GetAllBets()[3]))
+                players[currPlayer].DoAction();
+                if (PlayerController.GetAllBets().All(x => x == PlayerController.GetAllBets().First()))
                 {
                     allBetsAreNotEqual = false;
+                }
+                currPlayer++;
+                if (currPlayer == 4)
+                {
+                    currPlayer = 0;
                 }
             }
         }

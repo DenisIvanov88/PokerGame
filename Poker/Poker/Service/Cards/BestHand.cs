@@ -109,11 +109,21 @@ namespace Poker.Service.Cards
         }
         private static void CheckForStraight(Player player)
         {
-            Card[] orderedCards = player.HandAndBoard.OrderByDescending(x => x.Number).ToArray();
+            List<Card> orderedCards = player.HandAndBoard.OrderByDescending(x => x.Number).ToList();
+            if (orderedCards.Any(x => x.Number == 14))
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    if (orderedCards[i].Number == 14)
+                    {
+                        orderedCards.Add(new Card(1, orderedCards[i].Suit));
+                    }
+                }
+            }
             List<Card> straightCards = new List<Card>();
             int sequenceCount = 1;
 
-            for (int i = 0; i < orderedCards.Length - 1; i++)
+            for (int i = 0; i < orderedCards.Count - 1; i++)
             {
                 if (orderedCards[i].Number == orderedCards[i + 1].Number + 1)
                 {
@@ -123,6 +133,11 @@ namespace Poker.Service.Cards
                     {
                         straightCards.Add(orderedCards[i + 1]);
                         player.BestHand.Value = 5;
+                        if (straightCards.Last().Number == 1)
+                        {
+                            straightCards.Add(new Card(14, straightCards.Last().Suit));
+                            straightCards.RemoveAll(x => x.Number == 1);
+                        }
                         player.BestHand.BestCards.AddRange(straightCards);
                         break;
                     }

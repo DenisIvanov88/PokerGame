@@ -19,7 +19,17 @@ namespace Poker.Service
             string[] command = CommandView.AskUser().ToArray();
             switch (command[0])
             {
-                case "raise": base.Raise(uint.Parse(command[1])); break;
+                case "raise":
+                    if (uint.Parse(command[1]) > this.Balance)
+                    {
+                        Console.WriteLine("Invalid amount! Amount must be lower than user's balance!");
+                        this.DoAction();
+                    }
+                    else
+                    {
+                        base.Raise(uint.Parse(command[1]));
+                    }
+                    break;
                 case "call":
                     if (BetController.PlayerCanCall(this))
                     {
