@@ -22,7 +22,7 @@ namespace Poker.View
                 Console.Write("Pass/Raise/Fold? ");
             }
 
-            string[] command = Console.ReadLine().Trim().Split(' ').Where(x => x != "").Select(x => x.ToLower()).ToArray();
+            string[] command = Console.ReadLine().Trim().Split(' ').Select(x => x.ToLower()).ToArray();
             return command;
         }
     }
