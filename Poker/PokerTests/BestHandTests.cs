@@ -16,10 +16,10 @@ namespace PokerTests
         private static Card[] straightFlushCardsNoDupl = { new Card(3, 'H'), new Card(4, 'H'), new Card(5, 'H'), new Card(10, 'S'), new Card(9, 'S'), new Card(6, 'H'), new Card(7, 'H') };
         private static Card[] straightFlushCardsWithDupl = { new Card(3, 'H'), new Card(4, 'H'), new Card(5, 'H'), new Card(6, 'S'), new Card(7, 'S'), new Card(6, 'H'), new Card(7, 'H') };
         private static Card[] pairCards = { new Card(3, 'H'), new Card(3, 'S'), new Card(5, 'H'), new Card(10, 'S'), new Card(11, 'S'), new Card(9, 'S'), new Card(7, 'D') };
-        private static Card[] twoPairCards = { new Card(3, 'H'), new Card(3, 'S'), new Card(5, 'H'), new Card(5, 'S'), new Card(11, 'S'), new Card(9, 'S'), new Card(7, 'D') };
+        private static Card[] twoPairCards = { new Card(3, 'H'), new Card(3, 'S'), new Card(5, 'H'), new Card(5, 'S'), new Card(11, 'S'), new Card(7, 'S'), new Card(7, 'D') };
         private static Card[] setCards = { new Card(3, 'H'), new Card(5, 'D'), new Card(5, 'H'), new Card(5, 'S'), new Card(11, 'S'), new Card(9, 'S'), new Card(7, 'D') };
         private static Card[] fullHouseCards = { new Card(5, 'H'), new Card(5, 'D'), new Card(5, 'S'), new Card(3, 'S'), new Card(3, 'H'), new Card(9, 'S'), new Card(7, 'D') };
-        private static Card[] quadCards = { new Card(5, 'H'), new Card(5, 'D'), new Card(5, 'S'), new Card(5, 'C'), new Card(3, 'H'), new Card(9, 'S'), new Card(7, 'D') };
+        private static Card[] quadCards = { new Card(14, 'C'), new Card(14, 'D'), new Card(10, 'S'), new Card(10, 'C'), new Card(10, 'H'), new Card(10, 'D'), new Card(3, 'H') };
         [Test]
         public void ChecksForFlush()
         {
@@ -100,6 +100,6 @@ namespace PokerTests
             BestHand.SetBestCards(player);
 
             Assert.AreEqual(8, player.BestHand.Value);
-        }
+        } 
     }
 }

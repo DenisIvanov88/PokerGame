@@ -25,9 +25,9 @@ namespace Poker
                 GameController.Phase(currentPhase);
                 if (currentPhase == 6)
                 {
-                    Console.Write("Would you like to continue playing? YES/NO ");
+                    Console.Write("Would you like to continue playing? yes/No ");
                     string command = Console.ReadLine().Trim().ToLower();
-                    if (command == "yes")
+                    if (command == "yes" || command == "y")
                     {
                         currentPhase = 0;
                         ResetGame();

@@ -90,12 +90,9 @@ namespace Poker.Service
             {
                 player.HandAndBoard = player.Hand;
                 player.HandAndBoard.AddRange(CardData.Board);
-            }
-            foreach (var player in players)
-            {
                 BestHand.SetBestCards(player);
             }
-
+            
             Player bestPlayer = players[0];
             for (int i = 1; i < players.Count; i++)
             {
@@ -103,7 +100,7 @@ namespace Poker.Service
                 {
                     bestPlayer = players[i];
                 }
-                else if (players[i].BestHand.Value == players[i].BestHand.Value)
+                else if (players[i].BestHand.Value == bestPlayer.BestHand.Value)
                 {
                     for (int j = 0; j < 5; j++)
                     {

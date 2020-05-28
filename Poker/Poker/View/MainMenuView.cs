@@ -18,10 +18,10 @@ namespace Poker.View
 
             PlayerController.InitializeAllPlayers(name, balance);
         }
-        public static void ShowWinner(Player player)
+        public static void ShowWinner(Player winner)
         {
-            Console.WriteLine($"Winner is: {player.Name}!");
-            CardView.PrintCards(player.BestHand.BestCards.ToArray(), player.Name);
+            Console.WriteLine($"Winner is: {winner.Name}!");
+            CardView.PrintCards(winner.BestHand.BestCards.ToArray(), winner.Name);
         }
     }
 }
