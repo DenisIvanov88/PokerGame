@@ -1,5 +1,6 @@
 ﻿using Poker.Data;
 using Poker.Service.Cards;
+using Poker.Service.DBContexts;
 using Poker.Service.Players;
 using Poker.View;
 using System;
@@ -61,22 +62,19 @@ namespace Poker.Service
 
                 Player winner = DecideWinner(players);
                 winner.Balance += PlayerController.GetAllBets().Aggregate((x, y) => x + y);
+                ContextsData.RoundsPoolContext.AddRoudPool((int)PlayerController.GetAllBets().Aggregate((x, y) => x + y), winner.Name);
                 MainMenuView.ShowWinner(winner);
+                ContextsData.WinnerLogContext.AddWinner(winner);
             }
         }
         private static void PlayersDoActionUntillAllBetsAreEqual(List<Player> players)
         {
             AllPlayersDoAction(players);
 
-            bool allBetsAreNotEqual = true;
             int currPlayer = 0;
-            while (allBetsAreNotEqual)
+            while (!PlayerController.GetAllBets().All(x => x == PlayerController.GetAllBets().First()))
             {
                 players[currPlayer].DoAction();
-                if (PlayerController.GetAllBets().All(x => x == PlayerController.GetAllBets().First()))
-                {
-                    allBetsAreNotEqual = false;
-                }
                 currPlayer++;
                 if (currPlayer == 4)
                 {

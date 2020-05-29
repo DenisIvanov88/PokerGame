@@ -1,4 +1,5 @@
-﻿using Poker.Service.Players;
+﻿using Poker.Data;
+using Poker.Service.Players;
 using Poker.View;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace Poker.Service
                 case "raise":
                     if (uint.Parse(command[1]) > this.Balance)
                     {
-                        Console.WriteLine("Invalid amount! Amount must be lower than user's balance!");
+                        PrintMessageView.PrintNewLineMessage("Invalid amount! Amount must be lower than user's balance!");
                         this.DoAction();
                     }
                     else
@@ -39,7 +40,9 @@ namespace Poker.Service
                 case "fold": base.Fold(); break;
                 case "stop":
                 case "end": Engine.Playing = false; break;
-                default: Console.WriteLine($"{Name} passed"); break;
+                default: PrintMessageView.PrintNewLineMessage($"{Name} passed");
+                    ContextsData.MessageLogContext.AddMessageLog($"{Name} passed");
+                    break;
             }
         }
     }

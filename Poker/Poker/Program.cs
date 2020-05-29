@@ -12,6 +12,8 @@ namespace Poker
 {
     class Program
     {
+        public const string ConnectionString = 
+            "server=localhost; port=3306; user id=root; password=password; database=poker; SslMode=none";
         static void Main(string[] args)
         {
             Engine.Start();

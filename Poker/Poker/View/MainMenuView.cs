@@ -1,4 +1,5 @@
-﻿using Poker.Service;
+﻿using Poker.Data;
+using Poker.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace Poker.View
         public static void ShowWinner(Player winner)
         {
             Console.WriteLine($"Winner is: {winner.Name}!");
+            ContextsData.MessageLogContext.AddMessageLog($"Winner is: {winner.Name}!");
             CardView.PrintCards(winner.BestHand.BestCards.ToArray(), winner.Name);
         }
     }

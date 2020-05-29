@@ -1,5 +1,7 @@
-﻿using Poker.Service.Cards;
+﻿using Poker.Data;
+using Poker.Service.Cards;
 using Poker.Service.Players;
+using Poker.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,13 +45,15 @@ namespace Poker.Service
         {
             Balance -= BetController.GetHighestBet() - CurrentBid;
             CurrentBid = BetController.GetHighestBet();
-            Console.WriteLine($"{Name} called");
+            PrintMessageView.PrintNewLineMessage($"{Name} called");
+            ContextsData.MessageLogContext.AddMessageLog($"{Name} called");
         }
         public void Raise(uint raiseValue)
         {
             Balance -= BetController.GetHighestBet() + raiseValue - CurrentBid;
             CurrentBid = BetController.GetHighestBet() + raiseValue;
-            Console.WriteLine($"{Name} raised {raiseValue}");
+            PrintMessageView.PrintNewLineMessage($"{Name} raised {raiseValue}");
+            ContextsData.MessageLogContext.AddMessageLog($"{Name} raised {raiseValue}");
         }
         public void Fold()
         {

@@ -1,4 +1,6 @@
-﻿using Poker.Service.Players;
+﻿using Poker.Data;
+using Poker.Service.Players;
+using Poker.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +22,8 @@ namespace Poker.Service
             }
             else
             {
-                Console.WriteLine($"{Name} passed");
+                PrintMessageView.PrintNewLineMessage($"{Name} passed");
+                ContextsData.MessageLogContext.AddMessageLog($"{Name} passed");
             }
         }
     }
