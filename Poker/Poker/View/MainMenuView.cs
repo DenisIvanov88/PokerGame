@@ -15,9 +15,17 @@ namespace Poker.View
             Console.Write("Username: ");
             string name = Console.ReadLine();
             Console.Write("Balance: ");
-            uint balance = uint.Parse(Console.ReadLine());
+            string balance = Console.ReadLine();
+            try
+            {
+                uint.Parse(balance);
+            }
+            catch (FormatException)
+            {
+                throw new FormatException("Invalid data type!");
+            }
 
-            PlayerController.InitializeAllPlayers(name, balance);
+            PlayerController.InitializeAllPlayers(name, uint.Parse(balance));
         }
         public static void ShowWinner(Player winner)
         {

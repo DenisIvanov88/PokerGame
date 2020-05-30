@@ -21,10 +21,21 @@ namespace Poker.Service
             switch (command[0])
             {
                 case "raise":
+                    try
+                    {
+                        uint.Parse(command[1]);
+                    }
+                    catch (Exception)
+                    {
+                        PrintMessageView.PrintNewLineMessage("Invalid data type!");
+                        this.DoAction();
+                        break;
+                    }
                     if (uint.Parse(command[1]) > this.Balance)
                     {
                         PrintMessageView.PrintNewLineMessage("Invalid amount! Amount must be lower than user's balance!");
                         this.DoAction();
+                        break;
                     }
                     else
                     {

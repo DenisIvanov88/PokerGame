@@ -60,6 +60,7 @@ namespace Poker.Service
             {
                 List<Player> players = PlayerController.GetAllPlayers().Where(x => x.NotFolded).ToList();
 
+                PrintGameView.PrintGame();
                 Player winner = DecideWinner(players);
                 winner.Balance += PlayerController.GetAllBets().Aggregate((x, y) => x + y);
                 ContextsData.RoundsPoolContext.AddRoudPool((int)PlayerController.GetAllBets().Aggregate((x, y) => x + y), winner.Name);
