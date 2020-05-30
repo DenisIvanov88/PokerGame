@@ -32,7 +32,7 @@ namespace Poker.Service
 
         public void AddCards(params Card[] cards)
         {
-            foreach(var c in cards)
+            foreach (var c in cards)
             {
                 Hand.Add(c);
             }
@@ -50,6 +50,10 @@ namespace Poker.Service
         }
         public void Raise(uint raiseValue)
         {
+            if (raiseValue > PlayerController.GetAllBalances().Min())
+            {
+                raiseValue = PlayerController.GetAllBalances().Min();
+            }
             Balance -= BetController.GetHighestBet() + raiseValue - CurrentBid;
             CurrentBid = BetController.GetHighestBet() + raiseValue;
             PrintMessageView.PrintNewLineMessage($"{Name} raised {raiseValue}");
