@@ -159,9 +159,9 @@
     <Compile Include="Data\Tables\MessageLog.cs" />
     <Compile Include="Data\Tables\RoundsPool.cs" />
     <Compile Include="Data\Tables\WinnerLog.cs" />
-    <Compile Include="Service\DBContexts\MessageLogContext.cs" />
-    <Compile Include="Service\DBContexts\RoundsPoolContext.cs" />
-    <Compile Include="Service\DBContexts\WinnerLogContext.cs" />
+    <Compile Include="Data\DBContexts\MessageLogContext.cs" />
+    <Compile Include="Data\DBContexts\RoundsPoolContext.cs" />
+    <Compile Include="Data\DBContexts\WinnerLogContext.cs" />
     <Compile Include="Data\PlayerData.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="Service\Cards\BestHand.cs" />

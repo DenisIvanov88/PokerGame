@@ -6,16 +6,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Poker.Service.DBContexts
+namespace Poker.Data.DBContexts
 {
-    public class MessageLogContext : DbContext
+    public class RoundsPoolContext : DbContext
     {
-        public DbSet<MessageLog> MessageLogs { get; set; }
-        
-        public void AddMessageLog(string message)
+        public DbSet<RoundsPool> RoundsPools { get; set; }
+
+        public void AddRoudPool(int poolValue, string winnerName)
         {
-            MessageLog messageLog = new MessageLog() { Message = message, Time = DateTime.Now };
-            MessageLogs.Add(messageLog);
+            RoundsPool roundsPool = new RoundsPool() { Pool = poolValue, WinnerName = winnerName };
+            RoundsPools.Add(roundsPool);
             base.SaveChanges();
         }
 

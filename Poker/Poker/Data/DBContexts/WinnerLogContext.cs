@@ -1,12 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Poker.Data.Tables;
+using Poker.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Poker.Service.DBContexts
+namespace Poker.Data.DBContexts
 {
     public class WinnerLogContext : DbContext
     {
